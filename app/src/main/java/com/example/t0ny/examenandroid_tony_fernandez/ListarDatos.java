@@ -28,13 +28,15 @@ public class ListarDatos extends AppCompatActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listar_datos);
         Intent intent = getIntent();
+        Button btnvolveratras=(Button)findViewById(R.id.botonvueltaatras);
+        btnvolveratras.setOnClickListener(this);
 
         lista=(ListView)findViewById(R.id.listafinal);
 
-        contactos=(ArrayList) intent.getParcelableExtra("listacontactos");
+        contactos=(ArrayList<Contacto>) intent.getSerializableExtra("listacontactos");
 
         adapter=new ArrayAdapter<Contacto>(this,android.R.layout.simple_list_item_1,
-                (ArrayList)intent.getParcelableExtra("listacontactos"));
+                (ArrayList)intent.getSerializableExtra("listacontactos"));
         lista.setAdapter(adapter);
         lista.setOnItemClickListener(this);
         adapter.notifyDataSetChanged();
@@ -42,7 +44,6 @@ public class ListarDatos extends AppCompatActivity implements View.OnClickListen
 
     @Override
     public void onClick(View view) {
-        Intent intent=new Intent(this,MainActivity.class);
         finish();
 
     }

@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.botonvertodos:
                 intent = new Intent(this, ListarDatos.class);
+                intent.putExtra("listacontactos", listaContactos);
                 startActivityForResult(intent, LISTAR);
                 break;
         }
@@ -72,6 +73,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     if (resultCode == Activity.RESULT_OK) {
                         if (data.hasExtra("listaContactos")) {
                             listaContactos = data.getParcelableArrayListExtra("listacontactos");
+                        }
+                    }
+                }else{
+                    if(EDITAR == requestCode){
+                        if(resultCode == Activity.RESULT_OK){
+                            if(data.hasExtra("editar")){
+                                listaContactos=data.getParcelableArrayListExtra("editar");
+                            }
                         }
                     }
                 }
